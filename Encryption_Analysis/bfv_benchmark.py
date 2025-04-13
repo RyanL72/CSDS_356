@@ -41,3 +41,4 @@ def run_bfv_benchmark():
     display(df)
 
     plot_benchmark_results(df, "BFV")
+    return df

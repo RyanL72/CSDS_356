@@ -12,11 +12,12 @@ def load_and_preprocess_cifar10(t=37):
         transforms.ToTensor()
     ])
     dataset = CIFAR10(root="./data", train=True, download=True, transform=transform)
-
+    
     images = np.array([dataset[i][0].numpy().flatten() for i in range(len(dataset))])
-    images = np.round(images * (t - 1)).astype(int)  # Scale [0,1] to [0,t-1]
+    images_bfv = np.round(images * (t - 1)).astype(int)  # Convert float images to integers for BFV
+    
+    return images, images_bfv
 
-    return images
 
 def benchmark_algo_in_batches(encrypt, decrypt, params, images, algo_name):
     num_images = len(images)
@@ -72,4 +73,3 @@ def plot_benchmark_results(df, algo_name):
 
     plt.tight_layout()
     plt.show()
-

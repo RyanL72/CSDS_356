@@ -41,3 +41,4 @@ def run_tfhe_benchmark():
     print(df)
 
     plot_benchmark_results(df, "TFHE")
+    return df
